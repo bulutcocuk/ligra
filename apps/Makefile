@@ -20,9 +20,10 @@ endif
 
 #compilers
 ifdef CILK
-PCC = g++
-PCFLAGS = -fcilkplus -lcilkrts -O2 -DCILK $(INTT) $(INTE) $(CODE) $(PD)
-PLFLAGS = -fcilkplus -lcilkrts
+PCC = clang++
+#PCFLAGS = -fcilkplus -std=gnu++11 -lcilkrts -O2 -DCILK $(INTT) $(INTE) $(CODE) $(PD)
+PCFLAGS = -g -fcilkplus -fsanitize=cilk -stdlib=libc++ -std=gnu++11 -lcilkrts -O3 $(INTT) $(INTE) $(CODE) $(PD)
+PLFLAGS = -g -fcilkplus -fsanitize=cilk -stdlib=libc++ -std=gnu++11 -lcilkrts
 
 else ifdef MKLROOT
 PCC = icpc
@@ -39,7 +40,7 @@ endif
 
 COMMON= ligra.h graph.h compressedVertex.h vertex.h utils.h IO.h parallel.h gettime.h quickSort.h blockRadixSort.h transpose.h parseCommandLine.h byte.h byteRLE.h nibble.h byte-pd.h byteRLE-pd.h nibble-pd.h vertexSubset.h encoder.C
 
-ALL= encoder BFS BC BellmanFord Components Radii PageRank PageRankDelta BFSCC BFS-Bitvector KCore MIS Triangle CF
+ALL= encoder BFS #BC BellmanFord Components Radii PageRank PageRankDelta BFSCC BFS-Bitvector KCore MIS Triangle CF
 
 all: $(ALL)
 
