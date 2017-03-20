@@ -22,12 +22,12 @@ endif
 ifdef CILK
 PCC = clang++
 #PCFLAGS = -fcilkplus -std=gnu++11 -lcilkrts -O2 -DCILK $(INTT) $(INTE) $(CODE) $(PD)
-PCFLAGS = -g -fcilkplus -fsanitize=cilk -stdlib=libc++ -std=gnu++11 -lcilkrts -O3 $(INTT) $(INTE) $(CODE) $(PD)
+PCFLAGS = -g -fcilkplus -fsanitize=cilk -stdlib=libc++ -std=gnu++11 -lcilkrts -O2 -DCILK $(INTT) $(INTE) $(CODE) $(PD)
 PLFLAGS = -g -fcilkplus -fsanitize=cilk -stdlib=libc++ -std=gnu++11 -lcilkrts
 
 else ifdef MKLROOT
 PCC = icpc
-PCFLAGS = -O3 -DCILKP $(INTT) $(INTE) $(CODE) $(PD)
+PCFLAGS = -O2 -DCILKP $(INTT) $(INTE) $(CODE) $(PD)
 
 else ifdef OPENMP
 PCC = g++
@@ -35,7 +35,7 @@ PCFLAGS = -fopenmp -O3 -DOPENMP $(INTT) $(INTE) $(CODE) $(PD)
 
 else
 PCC = clang++
-PCFLAGS = -g -fcilkplus -stdlib=libc++ -std=gnu++11 -lcilkrts -O3 $(INTT) $(INTE) $(CODE) $(PD)
+PCFLAGS = -g -fcilkplus -stdlib=libc++ -std=gnu++11 -lcilkrts -O2 -DCILK $(INTT) $(INTE) $(CODE) $(PD)
 endif
 
 COMMON= ligra.h graph.h compressedVertex.h vertex.h utils.h IO.h parallel.h gettime.h quickSort.h blockRadixSort.h transpose.h parseCommandLine.h byte.h byteRLE.h nibble.h byte-pd.h byteRLE-pd.h nibble-pd.h vertexSubset.h encoder.C
